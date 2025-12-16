@@ -72,9 +72,9 @@ jobs:
 
       - name: 🚀 Deploy to DEV
         env:
-          URL: ${{ secrets.TOMCAT_URL_TEST-ENV }}
-          USER: ${{ secrets.TOMCAT_USER_TEST-ENV }}
-          PASS: ${{ secrets.TOMCAT_PASS_TEST-ENV }}
+          URL: ${{ secrets.TOMCAT_URL_TEST_ENV }}
+          USER: ${{ secrets.TOMCAT_USER_TEST_ENV }}
+          PASS: ${{ secrets.TOMCAT_PASS_TEST_ENV }}
         run: |
           WAR_FILE=$(ls *.war | head -n 1)
           echo "Deploying $WAR_FILE to DEV ($URL)"
