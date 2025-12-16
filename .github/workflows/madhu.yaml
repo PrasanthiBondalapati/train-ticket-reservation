@@ -113,8 +113,7 @@ jobs:
           curl -v -u "$USER:$PASS" --fail --show-error -T "$WAR_FILE" \
             "$URL/deploy?path=/train-ticket-reservation&update=true"
 
-
-   deploy-PROD_ENV:
+  deploy-PROD_ENV:
     needs: build
     runs-on: ubuntu-latest
 
