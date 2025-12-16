@@ -114,7 +114,7 @@ jobs:
             "$URL/deploy?path=/train-ticket-reservation&update=true"
 
 
-             deploy-PROD:
+   deploy-PROD:
     needs: build
     runs-on: ubuntu-latest
 
