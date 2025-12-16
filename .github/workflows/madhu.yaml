@@ -70,7 +70,7 @@ jobs:
         with:
           name: war-file
 
-      - name: 🚀 Deploy to DEV
+      - name: 🚀 Deploy to Test
         env:
           URL: ${{ secrets.TOMCAT_URL_TEST_ENV }}
           USER: ${{ secrets.TOMCAT_USER_TEST_ENV }}
