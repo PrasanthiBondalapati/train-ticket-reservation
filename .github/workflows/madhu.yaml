@@ -87,6 +87,33 @@ jobs:
             "$URL/deploy?path=/train-ticket-reservation&update=true"
 
 
+                
+  deploy-PRE-PROD_ENV:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: war-file
+
+      - name: 🚀 Deploy to Preprodenv
+        env:
+          URL: ${{ secrets.TOMCAT_URL_PRE-PROD_ENV }}
+          USER: ${{ secrets.TOMCAT_USER_PRE-PROD_ENV }}
+          PASS: ${{ secrets.TOMCAT_PASS_PRE-PROD_ENV }}
+        run: |
+          WAR_FILE=$(ls *.war | head -n 1)
+          echo "Deploying $WAR_FILE to DEV ($URL)"
+
+          echo "📌 Checking Tomcat Manager access..."
+          curl -v -u "$USER:$PASS" "$URL/list"
+
+          echo "📌 Deploying WAR file..."
+          curl -v -u "$USER:$PASS" --fail --show-error -T "$WAR_FILE" \
+            "$URL/deploy?path=/train-ticket-reservation&update=true"
+
+
             
 
 
