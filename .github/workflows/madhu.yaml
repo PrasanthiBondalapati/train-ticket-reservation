@@ -61,7 +61,7 @@ jobs:
             "$URL/deploy?path=/train-ticket-reservation&update=true"
 
  
-  deploy-dev:
+  deploy-TEST_ENV:
     needs: build
     runs-on: ubuntu-latest
 
