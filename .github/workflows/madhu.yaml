@@ -114,7 +114,7 @@ jobs:
             "$URL/deploy?path=/train-ticket-reservation&update=true"
 
 
-   deploy-PROD:
+   deploy-PROD_ENV:
     needs: build
     runs-on: ubuntu-latest
 
@@ -123,14 +123,14 @@ jobs:
         with:
           name: war-file
 
-      - name: 🚀 Deploy to Prod
+      - name: 🚀 Deploy to Prodenv
         env:
-          URL: ${{ secrets.TOMCAT_URL_PROD }}
-          USER: ${{ secrets.TOMCAT_USER_PROD }}
-          PASS: ${{ secrets.TOMCAT_PASS_PROD }}
+          URL: ${{ secrets.TOMCAT_URL_PROD_ENV }}
+          USER: ${{ secrets.TOMCAT_USER_PROD_ENV }}
+          PASS: ${{ secrets.TOMCAT_PASS_PROD_ENV }}
         run: |
           WAR_FILE=$(ls *.war | head -n 1)
-          echo "Deploying $WAR_FILE to PROD ($URL)"
+          echo "Deploying $WAR_FILE to PROD_ENV ($URL)"
 
           echo "📌 Checking Tomcat Manager access..."
           curl -v -u "$USER:$PASS" "$URL/list"
