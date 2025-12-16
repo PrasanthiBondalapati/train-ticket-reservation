@@ -77,7 +77,7 @@ jobs:
           PASS: ${{ secrets.TOMCAT_PASS_TEST_ENV }}
         run: |
           WAR_FILE=$(ls *.war | head -n 1)
-          echo "Deploying $WAR_FILE to DEV ($URL)"
+          echo "Deploying $WAR_FILE to TEST ($URL)"
 
           echo "📌 Checking Tomcat Manager access..."
           curl -v -u "$USER:$PASS" "$URL/list"
@@ -104,7 +104,7 @@ jobs:
           PASS: ${{ secrets.TOMCAT_PASS_PRE_PROD_ENV }}
         run: |
           WAR_FILE=$(ls *.war | head -n 1)
-          echo "Deploying $WAR_FILE to DEV ($URL)"
+          echo "Deploying $WAR_FILE to PRE-PROD ($URL)"
 
           echo "📌 Checking Tomcat Manager access..."
           curl -v -u "$USER:$PASS" "$URL/list"
