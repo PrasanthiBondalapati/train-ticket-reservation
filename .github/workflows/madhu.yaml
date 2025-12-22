@@ -5,7 +5,7 @@ on:
     branches:
       - master
   workflow_dispatch:
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -39,8 +39,8 @@ jobs:
          -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
-                       - name: Configure Maven settings.xml for Nexus
-                           run: |
+      - name: Configure Maven settings.xml for Nexus
+        run: |
           mkdir -p ~/.m2
           cat <<EOF > ~/.m2/settings.xml
           <settings>
@@ -56,6 +56,8 @@ jobs:
 
       - name: Upload Artifact to Nexus
         run: mvn deploy -DaltDeploymentRepository=nexus::default::${{ secrets.NEXUS_REPO_URL }}
+
+     
          
   deploy-dev:
     needs: build
